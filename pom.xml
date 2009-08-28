@@ -29,7 +29,7 @@
 
    <groupId>org.exoplatform.tool</groupId>
    <artifactId>exo.tool.framework.junit</artifactId>
-   <version>1.2.0</version>
+   <version>1.2.1-SNAPSHOT</version>
 
    <name>eXo Mock Objects framework</name>
    <description>eXo Mock Objects framework</description>
@@ -40,9 +40,9 @@
    </properties>
 
    <scm>
-      <connection>scm:svn:http://anonsvn.jboss.org/repos/exo-jcr/junit.framework/tags/1.2.0</connection>
-      <developerConnection>scm:svn:https://svn.jboss.org/repos/exo-jcr/junit.framework/tags/1.2.0</developerConnection>
-      <url>http://fisheye.jboss.org/browse/exo-jcr/junit.framework/tags/1.2.0</url>
+      <connection>scm:svn:http://anonsvn.jboss.org/repos/exo-jcr/junit.framework/trunk</connection>
+      <developerConnection>scm:svn:https://svn.jboss.org/repos/exo-jcr/junit.framework/trunk</developerConnection>
+      <url>http://fisheye.jboss.org/browse/exo-jcr/junit.framework/trunk</url>
    </scm>
 
    <dependencies>
