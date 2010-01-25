@@ -29,7 +29,7 @@
 
    <groupId>org.exoplatform.tool</groupId>
    <artifactId>exo.tool.framework.junit</artifactId>
-   <version>1.2.1-SNAPSHOT</version>
+   <version>1.2.1-CR1-SNAPSHOT</version>
 
    <name>eXo Mock Objects framework</name>
    <description>eXo Mock Objects framework</description>
