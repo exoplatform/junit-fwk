@@ -42,8 +42,8 @@
    </properties>
 
    <scm>
-      <connection>scm:git:ssh://github.com/exodev/junit-fwk.git</connection>
-      <developerConnection>scm:git:ssh://github.com/exodev/junit-fwk.git</developerConnection>
+      <connection>scm:git:git://github.com/exodev/junit-fwk.git</connection>
+      <developerConnection>scm:git:git@github.com/exodev/junit-fwk.git</developerConnection>
       <url>http://fisheye.jboss.org/browse/exo-jcr/junit.framework</url>
    </scm>
 
