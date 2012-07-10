@@ -193,4 +193,8 @@ public class MockServletContext implements ServletContext {
   public String getServletContextName() {
     return name_;
   }
+
+   public String getContextPath() {
+      return contextPath_;
+   }
 }
