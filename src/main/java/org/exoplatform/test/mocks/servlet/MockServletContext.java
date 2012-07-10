@@ -86,7 +86,7 @@ public class MockServletContext implements ServletContext {
   }
 
   public int getMinorVersion() {
-    return 3;
+    return 5;
   }
 
   public String getMimeType(String s) {
