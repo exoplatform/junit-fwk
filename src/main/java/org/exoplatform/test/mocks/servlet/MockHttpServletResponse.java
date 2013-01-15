@@ -21,6 +21,7 @@ package org.exoplatform.test.mocks.servlet;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.servlet.ServletOutputStream;
@@ -252,9 +253,31 @@ public class MockHttpServletResponse implements HttpServletResponse
       return null;
    }
 
+
    public void setCharacterEncoding(String arg0)
    {
       // TODO Auto-generated method stub
+   }
 
+   // servlet 3.0.1 API
+
+   public int getStatus()
+   {
+      return 0;
+   }
+
+   public String getHeader(String name)
+   {
+      return null;
+   }
+
+   public Collection<String> getHeaders(String name)
+   {
+      return null;
+   }
+
+   public Collection<String> getHeaderNames()
+   {
+      return null;
    }
 }

@@ -34,11 +34,19 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.servlet.AsyncContext;
+import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  * Created by The eXo Platform SARL Author : Mestrallet Benjamin
@@ -47,31 +55,33 @@ import javax.servlet.http.HttpSession;
 
 public class MockServletRequest implements HttpServletRequest {
 
-  private Map         parameters;
+   private Map parameters;
 
-  private Map         attributes;
+   private Map attributes;
 
-  private HttpSession session;
+   private HttpSession session;
 
-  private Locale      locale;
+   private Locale locale;
 
-  private boolean     secure;
+   private boolean secure;
 
-  private Map         headers;
+   private Map headers;
 
-  private String      enc         = "ISO-8859-1";
+   private String enc = "ISO-8859-1";
 
-  private String      pathInfo_;
+   private String pathInfo_;
 
-  private String      requestURI_;
+   private String requestURI_;
 
-  private URL         url;
+   private URL url;
 
-  private String      method      = "GET";
+   private String method = "GET";
 
-  private String      contextPath = "";
+   private String contextPath = "";
 
-  private String      remoteUser  = "REMOTE USER FROM MOCK";
+   private String remoteUser = "REMOTE USER FROM MOCK";
+
+   private boolean authenticated = true;
 
   public MockServletRequest(HttpSession session, Locale locale) {
 
@@ -117,11 +127,12 @@ public class MockServletRequest implements HttpServletRequest {
   public void reset() {
     parameters = new HashMap();
     attributes = new HashMap();
-  }
+   }
 
-  public String getAuthType() {
-    return DIGEST_AUTH;
-  }
+   public String getAuthType()
+   {
+      return authenticated ? DIGEST_AUTH : null;
+   }
 
   public Cookie[] getCookies() {
     return new Cookie[0];
@@ -178,9 +189,10 @@ public class MockServletRequest implements HttpServletRequest {
     return url.getQuery();
   }
 
-  public String getRemoteUser() {
-    return remoteUser;
-  }
+   public String getRemoteUser()
+   {
+      return authenticated ? remoteUser : null;
+   }
 
   public void setRemoteUser(String remoteUser) {
     this.remoteUser = remoteUser;
@@ -193,9 +205,10 @@ public class MockServletRequest implements HttpServletRequest {
       return false;
   }
 
-  public Principal getUserPrincipal() {
-    return new MockPrincipal();
-  }
+   public Principal getUserPrincipal()
+   {
+      return authenticated ? new MockPrincipal() : null;
+   }
 
   public String getRequestedSessionId() {
     return null;
@@ -354,6 +367,7 @@ public class MockServletRequest implements HttpServletRequest {
   }
 
   public RequestDispatcher getRequestDispatcher(String s) {
+
     return null;
   }
 
@@ -377,4 +391,72 @@ public class MockServletRequest implements HttpServletRequest {
   public int getRemotePort() {
     return 0;
   }
+
+   // servlet 3.0.1 api
+
+   public ServletContext getServletContext()
+   {
+      return new MockServletContext();
+   }
+
+   public AsyncContext startAsync() throws IllegalStateException
+   {
+      throw new IllegalStateException("Asynchronous request is not supported");
+   }
+
+   public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
+      throws IllegalStateException
+   {
+      throw new IllegalStateException("Asynchronous request is not supported");
+   }
+
+   public boolean isAsyncStarted()
+   {
+      return false;
+   }
+
+   public boolean isAsyncSupported()
+   {
+      return false;
+   }
+
+   public AsyncContext getAsyncContext()
+   {
+      throw new IllegalStateException("Request is not in asynchronous mode");
+   }
+
+   public DispatcherType getDispatcherType()
+   {
+      return DispatcherType.REQUEST;
+   }
+
+   public boolean authenticate(HttpServletResponse response) throws IOException, ServletException
+   {
+      return authenticated;
+   }
+
+   public void login(String username, String password) throws ServletException
+   {
+      if (authenticated)
+      {
+         throw new ServletException("Non-null caller identity had already been established");
+      }
+
+      authenticated = true;
+   }
+
+   public void logout() throws ServletException
+   {
+      authenticated = false;
+   }
+
+   public Collection<Part> getParts() throws IOException, ServletException
+   {
+      throw new ServletException("Request is not of type multipart/form-data");
+   }
+
+   public Part getPart(String name) throws IOException, ServletException
+   {
+      throw new ServletException("Request is not of type multipart/form-data");
+   }
 }
