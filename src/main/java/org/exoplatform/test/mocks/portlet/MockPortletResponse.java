@@ -16,4 +16,50 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.test.mocks.portlet;import javax.portlet.PortletResponse;import javax.servlet.http.Cookie;/** * Created by The eXo Platform SARL * Author : Tuan Nguyen *          tuan08@users.sourceforge.net * Date: Jul 27, 2003 * Time: 2:13:09 AM */public class MockPortletResponse implements PortletResponse{   public void addProperty(String key, String value)   {   }   public void setProperty(String key, String value)   {   }   public String encodeURL(String path)   {      return path;   }   public void addProperty(String key, org.w3c.dom.Element element)   {   }   public void addProperty(Cookie arg0)   {   }   public String getNamespace()   {      return null;   }   public org.w3c.dom.Element createElement(String tagName) throws org.w3c.dom.DOMException   {      return null;   }}
+package org.exoplatform.test.mocks.portlet;
+
+import javax.portlet.PortletResponse;
+import javax.servlet.http.Cookie;
+
+/**
+ * Created by The eXo Platform SARL
+ * Author : Tuan Nguyen
+ *          tuan08@users.sourceforge.net
+ * Date: Jul 27, 2003
+ * Time: 2:13:09 AM
+ */
+public class MockPortletResponse implements PortletResponse
+{
+
+   public void addProperty(String key, String value)
+   {
+   }
+
+   public void setProperty(String key, String value)
+   {
+   }
+
+   public String encodeURL(String path)
+   {
+      return path;
+   }
+
+   public void addProperty(String key, org.w3c.dom.Element element)
+   {
+   }
+
+   public void addProperty(Cookie arg0)
+   {
+   }
+
+   public String getNamespace()
+   {
+      return null;
+   }
+
+   public org.w3c.dom.Element createElement(String tagName) throws org.w3c.dom.DOMException
+   {
+      return null;
+   }
+
+}
